@@ -1,4 +1,4 @@
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../utilities/firebase-configs";
 import { useNavigate } from "react-router-dom";
 
@@ -24,12 +24,6 @@ export default function Login() {
       console.log(e);
     }
   };
-
-  // useEffect(() => {
-  //   onAuthStateChanged(firebaseAuth, (currentUser) => {
-  //     if (currentUser) navigate("/");
-  //   });
-  // }, []);
 
   return (
     <div className=" min-h-screen relative">

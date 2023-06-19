@@ -4,9 +4,9 @@ import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { FaPowerOff, FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { firebaseAuth } from "../utilities/firebase-configs";
 import { signOut } from "firebase/auth";
+
 export default function Navbar({ isScrolled }) {
   const [showSearch, setShowSearch] = useState(false);
   const [inputHover, setInputHover] = useState(false);
@@ -26,15 +26,20 @@ export default function Navbar({ isScrolled }) {
   return (
     <div>
       <nav
-        className={`sticky flex justify-between bg-black text-white  ${
-          isScrolled ? "scrolled" : ""
+        className={`fixed top-0 flex w-screen justify-between text-white ease-in-out duration-500  ${
+          isScrolled
+            ? "bg-[rgba(0,0,0,1)]"
+            : "bg-gradient-to-b from-black to-transparent"
         }`}
       >
-        <div id="left" className="flex items-center gap-12 m-6">
-          <div className="w-40">
+        <div
+          id="left"
+          className="flex items-center gap-4 lg:gap-12 pl-6 md:pl-12 mt-4"
+        >
+          <div className="w-20 md:w-24 lg:w-36">
             <img src={logo} alt="logo" />
           </div>
-          <ul className="flex gap-8">
+          <ul className="flex items-center gap-2 md:gap-4 lg:gap-8 sm:text-xs md:text-sm lg:text-lg">
             {links.map(({ name, link }) => {
               return (
                 <li key={name}>
@@ -44,7 +49,10 @@ export default function Navbar({ isScrolled }) {
             })}
           </ul>
         </div>
-        <div id="right" className=" flex items-center gap-6 m-6">
+        <div
+          id="right"
+          className=" flex items-center gap-6 pr-12 md:pr-12  mt-4"
+        >
           <div className={`flex gap-2 ${showSearch ? "show-search" : ""}`}>
             <button
               onFocus={() => setShowSearch(true)}
