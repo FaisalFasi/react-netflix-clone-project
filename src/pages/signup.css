@@ -1,0 +1,17 @@
+.bgContainer {
+  display: grid;
+  grid-template-rows: 15vh 85vh;
+  height: 100vh;
+}
+.formController {
+  width: 100%;
+}
+.emailInput {
+  width: 40%;
+}
+.passwordInput {
+  width: 40%;
+}
+.width-100-percent {
+  width: 100%;
+}
