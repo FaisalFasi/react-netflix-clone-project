@@ -26,7 +26,7 @@ export default function Navbar({ isScrolled }) {
   return (
     <div>
       <nav
-        className={`fixed top-0 flex w-screen justify-between text-white ease-in-out duration-500  ${
+        className={`fixed top-0 z-10 flex w-screen justify-between text-white ease-in-out duration-500  ${
           isScrolled
             ? "bg-[rgba(0,0,0,1)]"
             : "bg-gradient-to-b from-black to-transparent"
@@ -34,7 +34,7 @@ export default function Navbar({ isScrolled }) {
       >
         <div
           id="left"
-          className="flex items-center gap-4 lg:gap-12 pl-6 md:pl-12 mt-4"
+          className="flex items-center gap-4 lg:gap-12  ml-4 md:ml-8 lg:ml-12  my-2"
         >
           <div className="w-20 md:w-24 lg:w-36">
             <img src={logo} alt="logo" />
@@ -51,7 +51,7 @@ export default function Navbar({ isScrolled }) {
         </div>
         <div
           id="right"
-          className=" flex items-center gap-6 pr-12 md:pr-12  mt-4"
+          className=" flex items-center gap-6  mr-4 md:mr-8 lg:mr-12 my-2"
         >
           <div className={`flex gap-2 ${showSearch ? "show-search" : ""}`}>
             <button

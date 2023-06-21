@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Player() {
   const navigate = useNavigate();
+
   return (
     <div>
       <div className="player w-screen h-screen ">
