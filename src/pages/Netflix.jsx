@@ -39,34 +39,31 @@ export default function Netflix() {
     <div className="relative bg-black overflow-x-hidden">
       <Navbar isScrolled={isScrolled}> </Navbar>
 
-      <div className="relative bg-cover">
+      <div className="relative  bg-contain bg-center bg-no-repeat">
         <div className="brightness-75">
-          <img
-            src={backgroundImage}
-            alt="backgroundImage"
-            className="w-full h-screen"
-          />
+          <img src={backgroundImage} alt="backgroundImage" className="w-full" />
         </div>
-        {/* <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center pl-12"> */}
 
-        {/* <div className="absolute  top-0 text-center ml-16 mt-32"> */}
-        <div className="absolute top-1/2 left-0 transform   -translate-y-1/2 text-center ml-16">
-          <div className="logo">
+        <div className="absolute top-24 md:top-1/3 lg:top-1/2  left-0 transform -translate-y-1/2 text-center ml-6 md:ml-12 lg:ml-16">
+          <div className="logo  w-1/2 ">
             <img src={MovieLogo} alt="Movie Logo" />
           </div>
-          <div className="flex mt-20 gap-6 ">
+          <div className="flex gap-4 mt-4">
             <button
-              className="flex gap-2 justify-center items-center px-6 py-2  font-semibold   bg-slate-100 rounded hover:opacity-80  "
+              className="flex items-center gap-1 md:gap-2 bg-white text-black text-xs md:text-xl lg:text-2xl font-bold px-2 lg:px-4 py-1 lg:py-2 rounded hover:opacity-80"
               onClick={() => navigate("/player")}
             >
-              <FaPlay className="text-2xl" /> Play
+              <FaPlay className="text-xs md:text-xl lg:text-2xl" />
+              Play
             </button>
-            <button className="flex gap-2 justify-center items-center px-6 py-2  font-semibold   bg-[rgba(169,169,169,.8)] rounded text-white hover:opacity-80 ">
-              <AiOutlineInfoCircle className="text-2xl  " /> More Info
+            <button className="flex items-center gap-1 bg-zinc-400 text-black  text-xs md:text-xl lg:text-2xl font-bold px-2 py-1 rounded hover:opacity-80">
+              <AiOutlineInfoCircle className="text-xs md:text-2xl lg:text-3xl" />
+              More Info
             </button>
           </div>
         </div>
       </div>
+
       <Slider movies={movies} />
     </div>
   );

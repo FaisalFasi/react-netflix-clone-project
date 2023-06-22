@@ -7,38 +7,54 @@ export default function CardSlider({ data, title }) {
 
   const listRef = useRef();
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
   }, [data]);
+
   const handleDirection = () => {};
+
   return (
     <div
-      className="pb-40 overflow-x-scroll no-scrollbar flex flex-col gap-2 relative py-2  text-white"
-      onMouseDown={() => setShowControls(true)}
+      className="relative flex flex-col gap-2  py-2  text-white  "
+      onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
     >
+      {/* movies generic title */}
       <h1 className="mb-1 ml-12 text-2xl font-bold"> {title}</h1>
-      <div className="wrapper  w-max-content gap-2 transform translate-x-0 transit duration-100 ease-in-out ml-12 ">
+
+      {/*   wrapper */}
+      <div className="_wrapper_left_arrow flex justify-center items-center w-full">
+        {/* left arraw */}
         <div
-          className={`flex justify-center items-center ${
-            !showControls ? "" : ""
+          className={`absolute left-0 z-50 transform transition duration-300 ease-in-out   ml-12 ${
+            !showControls ? "hidden" : ""
           }`}
         >
-          <AiOutlineLeft onClick={() => handleDirection("left")} />
+          <AiOutlineLeft
+            onClick={() => handleDirection("left")}
+            className=" cursor-pointer  text-5xl font-bold "
+          />
         </div>
+
+        {/*  movies are being displayed here */}
         <div
-          className="flex gap-2 slider absolute z-50 h-full top-0 bottom-0 "
+          className="flex justify-start gap-2 z-10 h-full  ml-6"
           ref={listRef}
         >
           {data.map((movie, index) => {
             return <Card moviesData={movie} index={index} key={movie.id} />;
           })}
         </div>
+
+        {/* right arraw */}
         <div
-          className={`flex justify-center items-center ${
-            !showControls ? "" : ""
+          className={`absolute right-0 z-50 transform transition duration-300 ease-in-out   mr-12 ${
+            !showControls ? "hidden" : ""
           }`}
         >
-          <AiOutlineRight onClick={() => handleDirection("right")} />
+          <AiOutlineRight
+            onClick={() => handleDirection("right")}
+            className=" cursor-pointer  text-5xl font-bold "
+          />
         </div>
       </div>
     </div>
