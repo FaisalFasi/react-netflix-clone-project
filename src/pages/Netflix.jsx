@@ -20,7 +20,7 @@ export default function Netflix() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(movies);
+    // console.log(movies);
   }, [movies]);
 
   useEffect(() => {
@@ -63,7 +63,6 @@ export default function Netflix() {
           </div>
         </div>
       </div>
-
       <Slider movies={movies} />
     </div>
   );

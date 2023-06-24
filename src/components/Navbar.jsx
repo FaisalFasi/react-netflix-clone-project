@@ -26,7 +26,7 @@ export default function Navbar({ isScrolled }) {
   return (
     <div>
       <nav
-        className={`fixed top-0 z-10 flex w-screen justify-between text-white ease-in-out duration-500  ${
+        className={`fixed top-0 z-50 flex w-screen justify-between text-white ease-in-out duration-500  ${
           isScrolled
             ? "bg-[rgba(0,0,0,1)]"
             : "bg-gradient-to-b from-black to-transparent"
