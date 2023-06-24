@@ -15,7 +15,7 @@ export default function Slider({ movies }) {
       {/* <SliderTesting title="Trending Now" data={getMoviesFromRange(0, 5)} /> */}
 
       <CardSlider title="Trending Now" data={getMoviesFromRange(0, 10)} />
-      <CardSlider title="New Releases" data={getMoviesFromRange(10, 20)} />
+      {/* <CardSlider title="New Releases" data={getMoviesFromRange(10, 20)} />
       <CardSlider
         title="Blockbaster Movies"
         data={getMoviesFromRange(20, 30)}
@@ -25,7 +25,7 @@ export default function Slider({ movies }) {
         data={getMoviesFromRange(30, 40)}
       />
       <CardSlider title="Action Movies" data={getMoviesFromRange(40, 50)} />
-      <CardSlider title="Epics" data={getMoviesFromRange(50, 60)} />
+      <CardSlider title="Epics" data={getMoviesFromRange(50, 60)} /> */}
     </div>
   );
 }

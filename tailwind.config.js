@@ -6,5 +6,5 @@ export default {
       gridTemplateRows: "5vh 85vh",
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };
