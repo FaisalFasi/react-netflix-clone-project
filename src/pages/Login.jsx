@@ -2,10 +2,9 @@ import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../utilities/firebase-configs";
 import { useNavigate } from "react-router-dom";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import BackgroundImage from "../components/BackgroundImage";
 import Header from "../components/Header";
-import "./signup.css";
 
 export default function Login() {
   const navigate = useNavigate();

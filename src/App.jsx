@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import Player from "./components/Player";
 import Netflix from "./pages/Netflix";
 import Signup from "./pages/Signup";
