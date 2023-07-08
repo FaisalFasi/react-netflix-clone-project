@@ -20,10 +20,6 @@ export default function Netflix() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // console.log(movies);
-  }, [movies]);
-
-  useEffect(() => {
     dispatch(getGenres());
   }, []);
 
@@ -36,10 +32,9 @@ export default function Netflix() {
     return () => (window.onscroll = null);
   };
   return (
-    <div className="relative bg-black overflow-x-hidden">
+    <div className="bg-black overflow-hidden">
       <Navbar isScrolled={isScrolled}> </Navbar>
-
-      <div className="relative  bg-contain bg-center bg-no-repeat">
+      <div className="relative bg-contain bg-center bg-no-repeat">
         <div className="brightness-75">
           <img src={backgroundImage} alt="backgroundImage" className="w-full" />
         </div>

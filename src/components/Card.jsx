@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import video from "../assets/song-1.mp4";
@@ -7,36 +8,29 @@ import { BsCheck } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
 
-export default function Card({ index, moviesData, isLiked = false }) {
+export default React.memo(function Card({
+  index,
+  moviesData,
+  isLiked = false,
+}) {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   return (
-    <div className="relative ">
-      <div
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className={`relative  bg-red-500   hover:z-10 h-40
-          w-sm-40 w-72 cursor-pointer text-white  `}
-      >
-        <img
-          src={`https://image.tmdb.org/t/p/w500${moviesData.image}`}
-          alt="movie"
-          className="border border-r-2 w-full z-20 "
-        />
-      </div>
-
+    <Container
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <img
+        src={`https://image.tmdb.org/t/p/w500${moviesData.image}`}
+        alt="movie"
+      />
       {isHovered && (
-        <div
-          className="hover absolute  left-0  top-[-80px] z-20 w-80  h-max-content  border-r-2 shadow-lg bg-gray-800 transition ease-in-out duration-300"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <div className="image-video-continer relative flex h-40 ">
+        <div className="hover">
+          <div className="image-video-continer">
             <img
               src={`https://image.tmdb.org/t/p/w500${moviesData.image}`}
               alt="movie"
               onClick={() => navigate("/player")}
-              className="w-full h-36 object-cover border-r-1 z-20 absolute"
             />
             <video
               src={video}
@@ -44,59 +38,122 @@ export default function Card({ index, moviesData, isLiked = false }) {
               loop
               muted
               onClick={() => navigate("/player")}
-              className="w-full h-36 object-cover z-30 absolute"
             />
           </div>
-          <div className="info-container w-full p-2 gap-1">
-            <h3 className="name  w-full" onClick={() => navigate("/player")}>
-              {moviesData.name}
-            </h3>
-            <div className="icons flex justify-between ">
-              <div className="controls flex gap-2">
+          <div className="info-container flex flex-col gap-2">
+            <h3 onClick={() => navigate("/player")}>{moviesData.name}</h3>
+
+            <div className="icons flex justify-between">
+              <div className="controls flex  ">
                 <IoPlayBackCircleSharp
                   title="play"
-                  onClick={() => "/play"}
-                  className="text-2xl cursor-pointer transition ease-in-out hover:text-[rgb(184,184,184)]"
+                  onClick={() => navigate("/player")}
                 />
-                <RiThumbUpFill
-                  title="Like"
-                  className="text-2xl cursor-pointer transition ease-in-out hover:text-[rgb(184,184,184)]"
-                />
-                <RiThumbDownFill
-                  title="Dislike"
-                  className="text-2xl cursor-pointer transition ease-in-out hover:text-[rgb(184,184,184)]"
-                />
+
+                <RiThumbUpFill title="Like" />
+
+                <RiThumbDownFill title="Dislike" />
+
                 {isLiked ? (
-                  <BsCheck
-                    title="Remove from List"
-                    className="text-2xl cursor-pointer transition ease-in-out hover:text-[rgb(184,184,184)]"
-                  />
+                  <BsCheck title="Remove from List" />
                 ) : (
-                  <AiOutlinePlus
-                    title="Add to my list "
-                    className="text-2xl cursor-pointer transition ease-in-out hover:text-[rgb(184,184,184)]"
-                  />
+                  <AiOutlinePlus title="Add to my list " />
                 )}
               </div>
+
               <div className="info ">
-                <BiChevronDown
-                  title="More Info "
-                  className="text-2xl cursor-pointer transition ease-in-out hover:text-[rgb(184,184,184)]"
-                />
+                <BiChevronDown title="More Info " />
               </div>
             </div>
+
             <div className=" genres flex">
-              <ul className="flex w-auto list-disc  list-inside flex-wrap pl-4 mt-2 ">
+              <ul className="flex  ">
                 {moviesData.genres.map((genre) => (
-                  <li key={genre} className=" first:list-none pr-4 text-xs ">
-                    {genre}
-                  </li>
+                  <li key={genre}>{genre}</li>
                 ))}
               </ul>
             </div>
           </div>
         </div>
       )}
-    </div>
+    </Container>
   );
-}
+});
+const Container = styled.div`
+  /* overflow-x: hidden; */
+
+  max-width: 230px;
+  width: 230px;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  img {
+    border-radius: 0.2rem;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+  }
+  .hover {
+    z-index: 90;
+    height: max-content;
+    width: 20rem;
+    position: absolute;
+    top: -18vh;
+    left: 0;
+    border-radius: 0.3rem;
+    box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
+    background-color: #181818;
+    transition: 0.3s ease-in-out;
+    .image-video-continer {
+      position: relative;
+      height: 140px;
+      img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 0.3rem;
+        top: 0;
+        z-index: 4;
+        position: absolute;
+      }
+      video {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 0.3rem;
+        top: 0;
+        z-index: 5;
+        position: absolute;
+      }
+    }
+    .info-container {
+      padding: 1rem;
+      gap: 0.5rem;
+    }
+    .icons {
+      .controls {
+        display: flex;
+        gap: 1rem;
+      }
+      svg {
+        font-size: 2rem;
+        cursor: pointer;
+        transition: 0ms.3s ease-in-out;
+        &:hover {
+          color: #b8b8b8;
+        }
+      }
+    }
+    .genres {
+      ul {
+        gap: 1rem;
+        li {
+          padding-right: 0.7rem;
+          &:first-of-type {
+            list-style-type: none;
+          }
+        }
+      }
+    }
+  }
+`;

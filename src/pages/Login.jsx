@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../utilities/firebase-configs";
 import { useNavigate } from "react-router-dom";
 
@@ -19,11 +19,14 @@ export default function Login() {
     try {
       const { email, password } = formValues;
       await signInWithEmailAndPassword(firebaseAuth, email, password);
-      navigate("/");
+      // navigate("/");
     } catch (e) {
       console.log(e);
     }
   };
+  onAuthStateChanged(firebaseAuth, (currentUser) => {
+    if (currentUser) navigate("/");
+  });
 
   return (
     <div className=" min-h-screen relative">
