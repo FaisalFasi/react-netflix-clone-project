@@ -1,3 +1,4 @@
+import Slider from "../components/Slider";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../utilities/firebase-configs";
 import styled from "styled-components";
@@ -7,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies, getGenres } from "../store";
 import Navbar from "../components/Navbar";
-import Slider from "../components/slider";
 // import NotAvailable from "../components/NotAvailable";
 import SelectGenre from "../components/SelectGenre";
 
