@@ -7,7 +7,7 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies, getGenres } from "../store";
-import Slider from "../components/slider";
+import Slider from "../components/Slider";
 
 export default function Netflix() {
   const [isScrolled, setIsScrolled] = useState(false);
