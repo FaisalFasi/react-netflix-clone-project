@@ -3,7 +3,6 @@ import Login from "./pages/login";
 import Player from "./components/Player";
 import Netflix from "./pages/Netflix";
 import Signup from "./pages/Signup";
-import Test from "./pages/Test";
 import Movies from "./pages/Movies";
 import TVShows from "./pages/TVShows";
 
@@ -18,7 +17,6 @@ function App() {
           <Route exact path="/player" element={<Player />}></Route>
           <Route exact path="/movies" element={<Movies />}></Route>
           <Route exact path="/tv" element={<TVShows />}></Route>
-
           <Route exact path="/" element={<Netflix />}></Route>
         </Routes>
       </BrowserRouter>
