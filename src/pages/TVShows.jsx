@@ -8,8 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies, getGenres } from "../store";
 import Navbar from "../components/Navbar";
 import Slider from "../components/slider";
-import NotAvailable from "../components/NotAvailable";
+// import NotAvailable from "../components/NotAvailable";
 import SelectGenre from "../components/SelectGenre";
+
 export default function TVShows() {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
@@ -25,26 +26,39 @@ export default function TVShows() {
   }, []);
 
   useEffect(() => {
-    if (genresLoaded) dispatch(fetchMovies({ type: "tv" }));
+    if (genresLoaded) {
+      dispatch(fetchMovies({ genres, type: "tv" }));
+    }
   }, [genresLoaded]);
+  const [user, setUser] = useState(undefined);
+
+  onAuthStateChanged(firebaseAuth, (currentUser) => {
+    if (currentUser) setUser(currentUser.uid);
+    else navigate("/login");
+  });
 
   window.onscroll = () => {
-    setIsScrolled(window.pageYOffset === 0 ? false : true);
+    setIsScrolled(window.scrollY === 0 ? false : true);
     return () => (window.onscroll = null);
   };
-
   // onAuthStateChanged(firebaseAuth, (currentUser) => {
-  //   if (currentUser) navigate("/");
+  //   if (currentUser) navigate("/tv");
   // });
 
   return (
     <Container>
-      <div className="navbar text-white">
-        <Navbar isScrolled={isScrolled} />
-      </div>
+      <Navbar isScrolled={isScrolled} />
+      <div className="navbar text-white"></div>
       <div className="data mt-32">
         <SelectGenre genres={genres} type="tv" />
-        {movies.length ? <Slider movies={movies} /> : <NotAvailable />}
+        {movies.length ? (
+          <Slider movies={movies} />
+        ) : (
+          <h1 className="not-available">
+            No TV Shows avaialble for the selected genre. Please select a
+            different genre.
+          </h1>
+        )}
       </div>
     </Container>
   );

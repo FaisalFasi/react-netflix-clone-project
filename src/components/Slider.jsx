@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import CardSlider from "./CardSlider";
-import SliderTesting from "./SliderTesting";
+// import SliderTesting from "./SliderTesting";
 import React from "react";
 export default React.memo(function Slider({ movies }) {
   useEffect(() => {}, [movies]);
