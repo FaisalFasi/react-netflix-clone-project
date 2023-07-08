@@ -4,7 +4,9 @@ import {
   createSlice,
 } from "@reduxjs/toolkit";
 import axios from "axios";
-// import { API_KEY, TMDB_BASE_URL } from "../utils/constants";
+
+// import { API_KEY, TMDB_BASE_URL } from "/utils/constants";
+import { API_KEY, TMDB_BASE_URL } from "../utilities/constants";
 
 const initialState = {
   movies: [],
@@ -15,9 +17,7 @@ const initialState = {
 export const getGenres = createAsyncThunk("netflix/genres", async () => {
   const {
     data: { genres },
-  } = await axios.get(
-    "https://api.themoviedb.org/3/genre/movie/list?api_key=3d39d6bfe362592e6aa293f01fbcf9b9"
-  );
+  } = await axios.get(`${TMDB_BASE_URL}/genre/movie/list?api_key=${API_KEY}`);
   return genres;
 });
 
@@ -56,7 +56,7 @@ export const fetchDataByGenre = createAsyncThunk(
       netflix: { genres },
     } = thunkAPI.getState();
     return getRawData(
-      `https://api.themoviedb.org/3/discover/${type}?api_key=3d39d6bfe362592e6aa293f01fbcf9b9&with_genres=${genre}`,
+      `${TMDB_BASE_URL}/discover/${type}?api_keys=${API_KEY}&with_genres=${genre}`,
       genres
     );
   }
@@ -76,28 +76,28 @@ export const fetchMovies = createAsyncThunk(
   }
 );
 
-export const getUsersLikedMovies = createAsyncThunk(
-  "netflix/getLiked",
-  async (email) => {
-    const {
-      data: { movies },
-    } = await axios.get(`http://localhost:5000/api/user/liked/${email}`);
-    return movies;
-  }
-);
+// export const getUsersLikedMovies = createAsyncThunk(
+//   "netflix/getLiked",
+//   async (email) => {
+//     const {
+//       data: { movies },
+//     } = await axios.get(`http://localhost:5000/api/user/liked/${email}`);
+//     return movies;
+//   }
+// );
 
-export const removeMovieFromLiked = createAsyncThunk(
-  "netflix/deleteLiked",
-  async ({ movieId, email }) => {
-    const {
-      data: { movies },
-    } = await axios.put("http://localhost:5000/api/user/remove", {
-      email,
-      movieId,
-    });
-    return movies;
-  }
-);
+// export const removeMovieFromLiked = createAsyncThunk(
+//   "netflix/deleteLiked",
+//   async ({ movieId, email }) => {
+//     const {
+//       data: { movies },
+//     } = await axios.put("http://localhost:5000/api/user/remove", {
+//       email,
+//       movieId,
+//     });
+//     return movies;
+//   }
+// );
 
 const NetflixSlice = createSlice({
   name: "Netflix",

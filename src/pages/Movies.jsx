@@ -10,39 +10,44 @@ import Navbar from "../components/Navbar";
 import Slider from "../components/slider";
 import NotAvailable from "../components/NotAvailable";
 import SelectGenre from "../components/SelectGenre";
+
 export default function Movies() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const navigate = useNavigate();
-
-  const genresLoaded = useSelector((state) => state.netflix.genresLoaded);
   const movies = useSelector((state) => state.netflix.movies);
   const genres = useSelector((state) => state.netflix.genres);
+  const genresLoaded = useSelector((state) => state.netflix.genresLoaded);
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getGenres());
-    // console.log(movies);
   }, []);
 
   useEffect(() => {
-    if (genresLoaded) dispatch(fetchMovies({ type: "movies" }));
+    if (genresLoaded) {
+      dispatch(fetchMovies({ genres, type: "movie" }));
+    }
   }, [genresLoaded]);
+
+  const [user, setUser] = useState(undefined);
+
+  onAuthStateChanged(firebaseAuth, (currentUser) => {
+    if (currentUser) setUser(currentUser.uid);
+    else navigate("/login");
+  });
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
 
-  // onAuthStateChanged(firebaseAuth, (currentUser) => {
-  //   if (currentUser) navigate("/");
-  // });
-
   return (
     <Container>
-      <div className="navbar text-white">
+      <div className="navbar">
         <Navbar isScrolled={isScrolled} />
       </div>
-      <div className="data mt-32">
+      <div className="data">
         <SelectGenre genres={genres} type="movie" />
         {movies.length ? <Slider movies={movies} /> : <NotAvailable />}
       </div>
