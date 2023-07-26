@@ -6,7 +6,7 @@ export default function Header(props) {
   return (
     <div className="flex items-center justify-between px-4 md:px-8 lg:px-16 ">
       <div className="">
-        <img src={logo} alt="logo" className="h-16 md:h-24 lg:h-32" />
+        <img src={logo} alt="logo" className="h-16 " />
       </div>
       <button
         onClick={() => navigate(props.login ? "/login" : "/signup")}
