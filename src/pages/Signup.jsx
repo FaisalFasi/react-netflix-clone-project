@@ -1,10 +1,8 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../utilities/firebase-configs";
-
 import { useState } from "react";
-import BackgroundImage from "../components/BackgroundImage";
 import Header from "../components/Header";
-import "./signup.css";
+// import "./signup.css";
 
 import { useNavigate } from "react-router-dom";
 export default function Signup() {
@@ -18,7 +16,6 @@ export default function Signup() {
 
   const navigate = useNavigate();
   const handleGetStarted = () => {
-    // console.log("email");
     if (isEmailValid) {
       setShowPassword(true);
       // navigate("/login");
@@ -57,8 +54,7 @@ export default function Signup() {
   };
 
   return (
-    <div className=" min-h-screen   bg-my-image bg-cover">
-      {/* <BackgroundImage /> */}
+    <div className=" min-h-screen bg-my-image bg-cover">
       <div className="min-h-screen w-full bg-black bg-opacity-60 bg-cover ">
         <Header login />
         <div className="md:pt-20">
