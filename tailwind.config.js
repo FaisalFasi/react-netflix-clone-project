@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        "my-image": "url('./src/assets/login.jpg')",
+        "my-dynamic-image": "var(--image-url)",
       },
       gridTemplateRows: "5vh 85vh",
     },

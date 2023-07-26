@@ -48,9 +48,9 @@ export default function Login() {
   return (
     <div className=" min-h-screen relative">
       <BackgroundImage />
-      <div className="absolute bgContainer top-0 left-0 h-full w-full  bg-black bg-opacity-60">
+      <div className="absolute  top-0 left-0 h-full w-full  bg-black bg-opacity-60">
         <Header signup />
-        <div className="flex flex-col justify-center items-center gap-4 ">
+        <div className="absolute top-[25%] left-0 right-0 flex flex-col gap-4  ">
           <div
             id="formLogin"
             className="width-100-percent flex flex-col items-center gap-5 text-white text-center  "

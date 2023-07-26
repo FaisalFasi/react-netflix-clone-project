@@ -10,7 +10,7 @@ export default function Header(props) {
       </div>
       <button
         onClick={() => navigate(props.login ? "/login" : "/signup")}
-        className=" cursor-pointer bg-red-600 text-white text-sm font-semibold border-none rounded px-4 py-2 md:w-20 md:h-10  "
+        className=" cursor-pointer bg-red-600 text-white text-sm font-semibold border-none rounded px-4 py-2 md:my-4      "
       >
         {props.login ? "Log In" : "Sign Up"}
       </button>

@@ -54,7 +54,11 @@ export default function Signup() {
   };
 
   return (
-    <div className=" min-h-screen bg-my-image bg-cover">
+    <div
+      className=" min-h-screen  bg-my-dynamic-image bg-cover"
+      style={{ backgroundImage: `url(${"../src/assets/login.jpg"})` }}
+    >
+      {/* <BackgroundImage /> */}
       <div className="min-h-screen w-full bg-black bg-opacity-60 bg-cover ">
         <Header login />
         <div className="md:pt-20">
