@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { fetchDataByGenre, getGenres } from "../store";
+import { fetchDataByGenre } from "../store";
 import React from "react";
 import { useDispatch } from "react-redux";
 export default function SelectGenre({ genres, type }) {
@@ -8,7 +8,7 @@ export default function SelectGenre({ genres, type }) {
     <Select
       className="flex"
       onChange={(e) => {
-        dispatch(fetchDataByGenre({ genre: e.target.value, type }));
+        dispatch(fetchDataByGenre({ genres, genre: e.target.value, type }));
       }}
     >
       {genres.map((genre) => {

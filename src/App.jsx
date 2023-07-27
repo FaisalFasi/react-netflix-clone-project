@@ -5,11 +5,12 @@ import Netflix from "./pages/Netflix";
 import Signup from "./pages/Signup";
 import Movies from "./pages/Movies";
 import TVShows from "./pages/TVShows";
+// import SliderTesting from "./components/SliderTesting";
 
 function App() {
   return (
     <>
-      {/* <Test /> */}
+      {/* <SliderTesting /> */}
       <BrowserRouter>
         <Routes>
           <Route exact path="/login" element={<Login />}></Route>

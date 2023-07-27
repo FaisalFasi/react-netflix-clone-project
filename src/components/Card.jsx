@@ -1,3 +1,5 @@
+// import { onAuthStateChanged } from "firebase/auth";
+// import { firebaseAuth } from "../utilities/firebase-configs";
 import styled from "styled-components";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +17,12 @@ export default React.memo(function Card({
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
+
+  // onAuthStateChanged(firebaseAuth, (currentUser) => {
+  //   if (currentUser) {
+  //     setEmail(currentUser.email);
+  //   } else navigate("/login");
+  // });
   return (
     <Container
       onMouseEnter={() => setIsHovered(true)}
@@ -22,19 +30,20 @@ export default React.memo(function Card({
     >
       <img
         src={`https://image.tmdb.org/t/p/w500${moviesData.image}`}
-        alt="movie"
+        alt="card"
+        onClick={() => navigate("/player")}
       />
       {isHovered && (
         <div className="hover">
           <div className="image-video-continer">
             <img
               src={`https://image.tmdb.org/t/p/w500${moviesData.image}`}
-              alt="movie"
+              alt="card"
               onClick={() => navigate("/player")}
             />
             <video
               src={video}
-              autoPlay
+              autoPlay={true}
               loop
               muted
               onClick={() => navigate("/player")}
@@ -138,7 +147,7 @@ const Container = styled.div`
       svg {
         font-size: 2rem;
         cursor: pointer;
-        transition: 0ms.3s ease-in-out;
+        transition: 0.3s ease-in-out;
         &:hover {
           color: #b8b8b8;
         }

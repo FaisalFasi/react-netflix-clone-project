@@ -62,17 +62,22 @@ export const fetchMovies = createAsyncThunk(
     );
   }
 );
-//api.themoviedb.org/3/discover/movie?api_key=24d0ee9a097251b8adf340310d2ffdf2&language=en-US&sort_by=release_date.desc&page=1&with_genres=35,53,27
 
 export const fetchDataByGenre = createAsyncThunk(
-  "netflix/moviesByGenres",
+  "netflix/genre",
   async ({ genre, type }, thunkAPI) => {
     const {
       netflix: { genres },
     } = thunkAPI.getState();
+
+    if (type === "movies") {
+      type = movie;
+    }
     console.log(type);
     return getRawData(
-      `${TMDB_BASE_URL}/discover/${type}?api_key=${API_KEY}&with_genres=${genre}}`,
+      `
+        https://api.themoviedb.org/3/discover/${type}?api_key=${API_KEY}&with_genres=${genre}
+        `,
       genres
     );
   }

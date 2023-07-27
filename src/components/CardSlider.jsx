@@ -4,23 +4,29 @@ import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
 export default React.memo(function CardSlider({ data, title }) {
-  const [showControls, setShowControls] = useState(false);
-  const [sliderPosition, setSliderPosition] = useState(0);
-
   const listRef = useRef();
-  const [arrowDisable, setArrowDisable] = useState(true);
+  const sliderItemWidth = 230;
+  const itemsToShow = 4;
+
+  const [sliderPosition, setSliderPosition] = useState(0);
+  const [showControls, setShowControls] = useState(false);
 
   const handleDirection = (direction) => {
-    let distance = listRef.current.getBoundingClientRect().x - 70;
+    // const containerWidth = listRef.current.offsetWidth;
+    const maxSliderPosition = Math.ceil(data.length / itemsToShow) - 1;
+    let newPosition = sliderPosition;
+
     if (direction === "left" && sliderPosition > 0) {
-      listRef.current.style.transform = `translateX(${230 + distance}px)`;
-      setSliderPosition(sliderPosition - 1);
+      newPosition = sliderPosition - 1;
+    } else if (direction === "right" && sliderPosition < maxSliderPosition) {
+      newPosition = sliderPosition + 1;
     }
-    if (direction === "right" && sliderPosition < 4) {
-      listRef.current.style.transform = `translateX(${-230 + distance}px)`;
-      setSliderPosition(sliderPosition + 1);
-    }
+
+    const distance = -newPosition * (sliderItemWidth * itemsToShow);
+    listRef.current.style.transform = `translateX(${distance}px)`;
+    setSliderPosition(newPosition);
   };
+
   return (
     <Container
       className="flex flex-col text-white"
@@ -36,7 +42,7 @@ export default React.memo(function CardSlider({ data, title }) {
         >
           <AiOutlineLeft onClick={() => handleDirection("left")} />
         </div>
-        <div className="flex slider " ref={listRef}>
+        <div className="flex slider" ref={listRef}>
           {data.map((movie, index) => {
             return <Card moviesData={movie} index={index} key={movie.id} />;
           })}
@@ -94,37 +100,3 @@ const Container = styled.div`
     }
   }
 `;
-{
-  /* <div className="relative flex items-center h-full ">
-{/* left arrow  */
-}
-{
-  /* <AiOutlineLeft */
-}
-// className="opacity-50 cursor-pointer hover:opacity-100"
-// onClick={slideLeft}
-// size={40}
-// />
-
-{
-  /* movies displaying here  */
-}
-{
-  /* <div
-  id="slider"
-  className="flex gap-2 w-full h-full    whitespace-nowrap scroll-smooth scrollbar-hide p-2"
->
-  {data.map((movie, index) => {
-    return <Card moviesData={movie} index={index} key={movie.id} />;
-  })}
-</div>
-{/* right arrow  */
-}
-{
-  /* <AiOutlineRight
-  className="opacity-50 cursor-pointer hover:opacity-100" */
-}
-// onClick={slideRight}
-// size={40} */}
-// />
-// </div> */}

@@ -42,8 +42,11 @@ export default function Navbar({ isScrolled }) {
           <ul className="flex items-center gap-2 md:gap-4 lg:gap-8 sm:text-xs md:text-sm lg:text-lg">
             {links.map(({ name, link }) => {
               return (
-                <li key={name}>
-                  <Link to={link}>{name} </Link>
+                <li
+                  key={name}
+                  className={`${name === "My List" ? "disabled" : ""}`}
+                >
+                  <Link to={link}>{name}</Link>
                 </li>
               );
             })}

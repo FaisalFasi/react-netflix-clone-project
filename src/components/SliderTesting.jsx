@@ -1,56 +1,81 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Photos from "./Images.json";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Card from "./Card";
-
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import imagesUrls from "./imagesTest.js";
 const SliderTesting = ({ data, title }) => {
-  const elementRef = useRef(null);
   const [arrowDisable, setArrowDisable] = useState(true);
   const unsplashed = "https://source.unsplash.com/200x200/";
+  console.log(imagesUrls);
 
-  const handleHorizantalScroll = (element, speed, distance, step) => {
-    let scrollAmount = 0;
-    const slideTimer = setInterval(() => {
-      element.scrollLeft += step;
-      scrollAmount += Math.abs(step);
-      if (scrollAmount >= distance) {
-        clearInterval(slideTimer);
-      }
-      //   if (element.scrollLeft === 0) {
-      //     setArrowDisable(true);
-      //   } else {
-      //     setArrowDisable(false);
-      //   }
-    }, speed);
+  const sliderRef = useRef(null);
+  const slideLeft = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollLeft -= 500;
+    }
+    // sliderRef.scrollRight = sliderRef.scrollLeft - 500;
   };
+
+  const slideRight = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollLeft += 500;
+    }
+    // sliderRef.scrollLeft = sliderRef.scrollLeft + 500;
+  };
+  // const handleHorizantalScroll = (element, speed, distance, step) => {
+  //   let scrollAmount = 0;
+
+  //   const slideTimer = setInterval(() => {
+  //     element.scrollLeft += step;
+  //     scrollAmount += Math.abs(step);
+  //     if (scrollAmount >= distance) {
+  //       clearInterval(slideTimer);
+  //     }
+  //     if (element.scrollLeft === 0) {
+  //       setArrowDisable(true);
+  //     } else {
+  //       setArrowDisable(false);
+  //     }
+  //   }, speed);
+  // };
 
   return (
     <>
-      <div className="flex justify-between text-white">
-        <button
-          onClick={() => {
-            handleHorizantalScroll(elementRef.current, 25, 100, -10);
-          }}
-          className="w-20 h-10 bg-white text-black mt-20 "
-          //   disabled={arrowDisable}
+      <div className="h-screen relative flex items-center bg-white">
+        <MdChevronLeft
+          className="opacity-50 cursor-pointer hover:opacity-100"
+          onClick={slideLeft}
+          size={40}
+        />
+        <div
+          ref={sliderRef}
+          id="slider"
+          className="flex w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth "
         >
-          Left
-        </button>
-        <button
-          onClick={() => {
-            handleHorizantalScroll(elementRef.current, 25, 100, 10);
-          }}
-        >
-          Right
-        </button>
-      </div>
-      <div
-        className="img-container flex overflow-hidden w-full ml-4"
-        ref={elementRef}
-      >
-        {data.map((movie, index) => {
-          return <Card moviesData={movie} index={index} key={movie.id} />;
-        })}
+          <img src="./src/assets/card.jpg" alt="" className=" w-40 h-40" />{" "}
+          <img src="./src/assets/card.jpg" alt="" className=" w-40 h-40" />{" "}
+          <img src="./src/assets/card.jpg" alt="" className=" w-40 h-40" />{" "}
+          <img src="./src/assets/card.jpg" alt="" className=" w-40 h-40" />{" "}
+          <img src="./src/assets/card.jpg" alt="" className=" w-40 h-40" />{" "}
+          <img src="./src/assets/card.jpg" alt="" className=" w-40 h-40" />{" "}
+          <img src="./src/assets/card.jpg" alt="" className=" w-40 h-40" />
+          <img src="./src/assets/card.jpg" alt="" className=" w-40 h-40" />
+          <img src="./src/assets/card.jpg" alt="" className=" w-40 h-40" />
+          {/* {imagesUrls.map((item, idx) => (
+            <img
+              key={idx}
+              className="w-[220px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
+              src={item.img}
+              alt="/"
+            />
+          ))} */}
+        </div>
+        <MdChevronRight
+          className="opacity-50 cursor-pointer hover:opacity-100"
+          onClick={slideRight}
+          size={40}
+        />
       </div>
     </>
   );
