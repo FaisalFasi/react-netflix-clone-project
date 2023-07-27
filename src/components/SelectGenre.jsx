@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { fetchDataByGenre } from "../store";
+import { fetchDataByGenre, getGenres } from "../store";
 import React from "react";
 import { useDispatch } from "react-redux";
 export default function SelectGenre({ genres, type }) {
@@ -25,7 +25,6 @@ const Select = styled.select`
   margin-left: 5rem;
   cursor: pointer;
   font-size: 1.4rem;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.4);
   color: white;
-  outline: 1px solid white;
 `;

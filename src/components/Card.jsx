@@ -25,6 +25,7 @@ export default React.memo(function Card({
   // });
   return (
     <Container
+      className="w-[120px] md:w-[230px]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -91,8 +92,6 @@ export default React.memo(function Card({
 const Container = styled.div`
   /* overflow-x: hidden; */
 
-  max-width: 230px;
-  width: 230px;
   height: 100%;
   cursor: pointer;
   position: relative;

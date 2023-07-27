@@ -29,12 +29,12 @@ export default React.memo(function CardSlider({ data, title }) {
 
   return (
     <Container
-      className="flex flex-col text-white"
+      className=" flex flex-col  text-white"
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
     >
       <h1>{title}</h1>
-      <div className="wrapper">
+      <div className="wrapper ">
         <div
           className={`slider-action left ${
             !showControls ? "none" : ""
