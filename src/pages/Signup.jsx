@@ -15,9 +15,11 @@ export default function Signup() {
   const [isEmailValid, setIsEmailValid] = useState(false);
 
   const navigate = useNavigate();
+
   const handleGetStarted = () => {
     if (isEmailValid) {
       setShowPassword(true);
+
       // navigate("/login");
     } else {
       alert("Please enter a valid email");
@@ -37,9 +39,12 @@ export default function Signup() {
     setIsEmailValid(emailRegex.test(value));
   };
 
-  const handleSignIn = async () => {
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    console.log("handleSignUp called"); // Add this line
     try {
       const { email, password } = formValues;
+
       if (password.length > 5) {
         await createUserWithEmailAndPassword(firebaseAuth, email, password);
 
@@ -70,7 +75,7 @@ export default function Signup() {
               Ready to watch? Enter your email to create or restart membership
             </p>
           </div>
-          <form onSubmit={handleSignIn} method="post">
+          <form onSubmit={handleSignUp} method="post">
             <div className="w-full flex flex-col md:flex-row items-center justify-center  gap-2 mt-8 px-8 text-black">
               <input
                 type="email"
@@ -102,7 +107,7 @@ export default function Signup() {
                   <button
                     className="w-full md:w-[30%] text-center bg-red-600 text-white rounded py-4 px-2  "
                     type="submit"
-                    onClick={handleSignIn}
+                    onClick={handleSignUp}
                   >
                     Sign Up
                   </button>

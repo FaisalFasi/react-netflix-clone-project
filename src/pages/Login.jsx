@@ -41,9 +41,9 @@ export default function Login() {
       alert("Please enter a valid email and password.");
     }
   };
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) navigate("/");
-  });
+  // onAuthStateChanged(firebaseAuth, (currentUser) => {
+  //   if (currentUser) navigate("/");
+  // });
 
   return (
     <div className=" min-h-screen relative">

@@ -21,7 +21,7 @@ export default function Navbar({ isScrolled }) {
   ];
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (!currentUser) navigate("/signup");
+    if (!currentUser) navigate("/login");
   });
 
   useEffect(() => {
