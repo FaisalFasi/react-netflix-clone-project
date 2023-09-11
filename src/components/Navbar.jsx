@@ -60,13 +60,13 @@ export default function Navbar({ isScrolled }) {
               showMenu
                 ? "flex flex-col pt-20 gap-10 font-bold  absolute top-0 bg-black h-screen w-full"
                 : "hidden"
-            } md:flex items-center gap-2 md:gap-4 lg:gap-8 sm:text-xs md:text-sm lg:text-lg`}
+            } md:flex items-center gap-4 md:gap-4 lg:gap-8 sm:text-xs md:text-sm lg:text-lg`}
           >
             {links.map(({ name, link, disabled }) => {
               return (
                 <li
                   key={name}
-                  onClick={toggleMobileMenu}
+                  onClick={() => setShowMenu(false)}
                   className={
                     disabled ? "disabled pointer-events-none opacity-50" : ""
                   }

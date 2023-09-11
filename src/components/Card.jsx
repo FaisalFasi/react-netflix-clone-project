@@ -1,5 +1,3 @@
-// import { onAuthStateChanged } from "firebase/auth";
-// import { firebaseAuth } from "../utilities/firebase-configs";
 import styled from "styled-components";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +7,7 @@ import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri";
 import { BsCheck } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
+import { API_KEY } from "../utilities/constants";
 
 export default React.memo(function Card({
   index,
@@ -17,12 +16,25 @@ export default React.memo(function Card({
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
+  // console.log(moviesData);
 
-  // onAuthStateChanged(firebaseAuth, (currentUser) => {
-  //   if (currentUser) {
-  //     setEmail(currentUser.email);
-  //   } else navigate("/login");
-  // });
+  // const options = {
+  //   method: "GET",
+  //   headers: {
+  //     accept: "application/json",
+  //     Authorization:
+  //       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNGQwZWU5YTA5NzI1MWI4YWRmMzQwMzEwZDJmZmRmMiIsInN1YiI6IjY0OTA1N2UxYzNjODkxMDBhZTUyMWZjMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Dp0smphNUhBSMvDkg0diuen_rdZa6pB2HDeTSTZDiOA",
+  //   },
+  // };
+
+  // fetch(
+  //   "https://api.themoviedb.org/3/movie/335977/videos?language=en-US",
+  //   options
+  // )
+  //   .then((response) => response.json())
+  //   .then((data) => console.log(data))
+  //   .catch((err) => console.error(err));
+
   return (
     <Container
       className="w-[120px] md:w-[230px]"
@@ -43,7 +55,7 @@ export default React.memo(function Card({
               onClick={() => navigate("/player")}
             />
             <video
-              src={video}
+              src={`https://api.themoviedb.org/3/movie/${moviesData.id}/videos?api_key=${API_KEY}`}
               autoPlay={true}
               loop
               muted

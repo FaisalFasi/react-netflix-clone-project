@@ -46,7 +46,7 @@ export default function TVShows() {
   // });
 
   return (
-    <Container>
+    <Container className="overflow-hidden">
       <Navbar isScrolled={isScrolled} />
       <div className="navbar text-white"></div>
       <div className="data mt-32">

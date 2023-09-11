@@ -43,7 +43,7 @@ export default function Movies() {
   };
 
   return (
-    <Container>
+    <Container className=" overflow-hidden">
       <div className="navbar">
         <Navbar isScrolled={isScrolled} />
       </div>
