@@ -16,24 +16,6 @@ export default React.memo(function Card({
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
-  // console.log(moviesData);
-
-  // const options = {
-  //   method: "GET",
-  //   headers: {
-  //     accept: "application/json",
-  //     Authorization:
-  //       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNGQwZWU5YTA5NzI1MWI4YWRmMzQwMzEwZDJmZmRmMiIsInN1YiI6IjY0OTA1N2UxYzNjODkxMDBhZTUyMWZjMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Dp0smphNUhBSMvDkg0diuen_rdZa6pB2HDeTSTZDiOA",
-  //   },
-  // };
-
-  // fetch(
-  //   "https://api.themoviedb.org/3/movie/335977/videos?language=en-US",
-  //   options
-  // )
-  //   .then((response) => response.json())
-  //   .then((data) => console.log(data))
-  //   .catch((err) => console.error(err));
 
   return (
     <Container
@@ -54,13 +36,17 @@ export default React.memo(function Card({
               alt="card"
               onClick={() => navigate("/player")}
             />
-            <video
-              src={`https://api.themoviedb.org/3/movie/${moviesData.id}/videos?api_key=${API_KEY}`}
-              autoPlay={true}
-              loop
-              muted
-              onClick={() => navigate("/player")}
-            />
+            {moviesData.videoURL ? (
+              <video
+                src={`https://api.themoviedb.org/3/movie/${moviesData.id}/videos?api_key=${API_KEY}`}
+                autoPlay={true}
+                loop
+                muted
+                onClick={() => navigate("/player")}
+              />
+            ) : (
+              ""
+            )}
           </div>
           <div className="info-container flex flex-col gap-2">
             <h3 onClick={() => navigate("/player")}>{moviesData.name}</h3>
@@ -102,8 +88,6 @@ export default React.memo(function Card({
   );
 });
 const Container = styled.div`
-  /* overflow-x: hidden; */
-
   height: 100%;
   cursor: pointer;
   position: relative;

@@ -70,13 +70,17 @@ export const fetchDataByGenre = createAsyncThunk(
       netflix: { genres },
     } = thunkAPI.getState();
 
-    if (type === "movies") {
-      type = movie;
-    }
-    console.log(type);
+    // before
+    // if (type === "movies") {
+    //   type = movie;
+    // }
+
+    // after
+    const apiType = type === "tv" ? "tv" : "movie";
+
     return getRawData(
       `
-        https://api.themoviedb.org/3/discover/${type}?api_key=${API_KEY}&with_genres=${genre}
+        https://api.themoviedb.org/3/discover/${apiType}?api_key=${API_KEY}&with_genres=${genre}
         `,
       genres
     );
